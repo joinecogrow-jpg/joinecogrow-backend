@@ -1,0 +1,22 @@
+﻿{
+  "name": "joinecogrow-backend",
+  "version": "1.0.0",
+  "description": "Main API backend services supporting all platform features",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joinecogrow-jpg/joinecogrow-backend.git"
+  },
+  "keywords": ["eco-growing", "sustainability", "api", "backend"],
+  "author": "JoinEcoGrow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joinecogrow-jpg/joinecogrow-backend/issues"
+  },
+  "homepage": "https://github.com/joinecogrow-jpg/joinecogrow-backend#readme"
+}
