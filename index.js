@@ -14,12 +14,13 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     features: '750+',
     status: 'operational',
+    platform: 'Global Eco-Growing Platform',
     endpoints: {
       health: '/api/health',
       features: '/api/features',
-      auth: '/api/auth',
       builds: '/api/builds',
       trees: '/api/trees',
+      auth: '/api/auth',
       users: '/api/users'
     }
   });
@@ -35,41 +36,81 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Feature categories (750+ features from your guides)
+// Feature categories from your comprehensive guides (750+ features)
 const features = {
-  diy: 88,
-  trees: 91,
-  gaming: 55,
-  entertainment: 63,
-  ai: 68,
-  iot: 38,
-  blockchain: 42,
-  community: 87,
-  analytics: 47,
-  commerce: 45,
-  enterprise: 74,
-  admin: 52
+  diy: 88,           // DIY Eco-Growing Systems
+  trees: 91,         // Tree Planting & Reforestation  
+  gaming: 55,        // Battle Royale & Mini-games
+  entertainment: 63, // Videos, Streaming, Podcasts
+  ai: 68,           // AI Garden Assistant, CRISPR, Quantum
+  iot: 38,          // Sensor Integration
+  blockchain: 42,    // NFTs, Carbon Credits, DAO
+  community: 87,     // Forums, Mentorship, Dating
+  analytics: 47,     // Insights & Tracking
+  commerce: 45,      // Marketplace, Payments
+  enterprise: 74,    // White-label, API, SSO
+  admin: 52         // Management Tools
 };
 
-// Features endpoint - THIS WAS MISSING!
+// IMPORTANT: Features endpoint - THIS IS WHAT'S MISSING!
 app.get('/api/features', (req, res) => {
+  const total = Object.values(features).reduce((a, b) => a + b, 0);
   res.json({
-    total: Object.values(features).reduce((a, b) => a + b, 0),
+    total: total,
     categories: features,
-    message: 'JoinEcoGrow Platform Features'
+    platform: 'JoinEcoGrow - Global Eco-Growing Platform',
+    message: 'Grow Together, Grow Sustainable',
+    comprehensive_guides: {
+      ultimate_unified: true,
+      dittofi_master: true,
+      global_comprehensive: true,
+      hybrid_implementation: true
+    }
   });
 });
 
-// 404 handler for undefined routes
+// Placeholder for builds endpoint
+app.get('/api/builds', (req, res) => {
+  res.json({
+    message: 'DIY Build Library',
+    total_builds: 500,
+    categories: ['hydroponics', 'vertical_gardens', 'composters', 'rain_barrels']
+  });
+});
+
+// Placeholder for trees endpoint
+app.get('/api/trees', (req, res) => {
+  res.json({
+    message: 'Tree Planting System',
+    features: ['QR tracking', 'GPS verification', 'NFT certificates', 'Carbon credits']
+  });
+});
+
+// 404 handler
 app.use((req, res) => {
   res.status(404).json({
-    error: 'Not Found',
+    error: 'Endpoint not found',
     message: `Cannot ${req.method} ${req.path}`,
-    suggestion: 'Check available endpoints at /'
+    available_endpoints: {
+      root: '/',
+      health: '/api/health',
+      features: '/api/features',
+      builds: '/api/builds',
+      trees: '/api/trees'
+    }
   });
 });
 
 app.listen(PORT, () => {
+  console.log('====================================');
   console.log('JoinEcoGrow Backend Server Started!');
-  console.log(`Server running on port ${PORT}`);
+  console.log('====================================');
+  console.log('Server running on port:', PORT);
+  console.log('Environment:', process.env.NODE_ENV || 'development');
+  console.log('Features: 750+ across 12 categories');
+  console.log('Platform: Global Eco-Growing Solution');
+  console.log('Ready to grow sustainably!');
+  console.log('====================================');
 });
+
+module.exports = app;
