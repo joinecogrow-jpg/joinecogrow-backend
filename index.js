@@ -30,11 +30,12 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
     uptime: process.uptime(),
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
-// Feature categories based on your 750+ features
+// Feature categories (750+ features from your guides)
 const features = {
   diy: 88,
   trees: 91,
@@ -50,34 +51,25 @@ const features = {
   admin: 52
 };
 
-// Features endpoint
+// Features endpoint - THIS WAS MISSING!
 app.get('/api/features', (req, res) => {
   res.json({
     total: Object.values(features).reduce((a, b) => a + b, 0),
-    categories: features
+    categories: features,
+    message: 'JoinEcoGrow Platform Features'
   });
 });
 
-// Error handling
+// 404 handler for undefined routes
 app.use((req, res) => {
   res.status(404).json({
     error: 'Not Found',
     message: `Cannot ${req.method} ${req.path}`,
-    availableEndpoints: {
-      root: '/',
-      health: '/api/health',
-      features: '/api/features'
-    }
+    suggestion: 'Check available endpoints at /'
   });
 });
 
 app.listen(PORT, () => {
-  console.log('====================================');
   console.log('JoinEcoGrow Backend Server Started!');
-  console.log('====================================');
-  console.log('Server running on port:', PORT);
-  console.log('Environment:', process.env.NODE_ENV || 'development');
-  console.log('Features: 750+');
-  console.log('Ready to grow!');
-  console.log('====================================');
+  console.log(`Server running on port ${PORT}`);
 });
